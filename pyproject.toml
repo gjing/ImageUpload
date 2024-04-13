@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "imageupload"
+version = "0.1.0"
+description = "Image uploader via for aws lambda"
+authors = ["gjing <georgejing93@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+pillow = "^10.3.0"
+numpy = "^1.26.4"
+xxhash = "^3.4.1"
+requests = "^2.31.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
