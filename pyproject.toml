@@ -11,6 +11,7 @@ pillow = "^10.3.0"
 numpy = "^1.26.4"
 xxhash = "^3.4.1"
 requests = "^2.31.0"
+flake8 = "^7.0.0"
 
 
 [build-system]
