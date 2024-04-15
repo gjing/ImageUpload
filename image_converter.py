@@ -1,7 +1,8 @@
 from PIL import Image
 from copy import deepcopy
 import xxhash
-import io, sys
+import io
+import sys
 
 
 def process_image(file):
@@ -23,11 +24,12 @@ def process_image(file):
     thumbnail = thumbnail.resize((width, height))
     thumbnail.save(thumbnail_file, format='WEBP')
     thumbnail_file.seek(0)
-    
+
     duration = im.info.get("duration", None)
     result.save(image_file, format='WEBP', duration=duration, save_all=True)
     image_file.seek(0)
     return filename, image_file.read(), thumbnail_file.read()
+
 
 if __name__ == '__main__':
     n, im, thumb = None, None, None

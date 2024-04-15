@@ -10,8 +10,6 @@ jobs:
     name: deploy
     runs-on: ubuntu-latest
     environment: aws-lambda
-    env:
-      NODE_VERSION: 20.x
     strategy:
       matrix:
         python-version:
@@ -19,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v2
+        uses: actions/setup-python@v5
         with:
           python-version: ${{ matrix.python-version }}
       - name: Install poetry
@@ -37,7 +35,7 @@ jobs:
         run: poetry install
       - name: Lint with flake8
         run: |
-            poetry run flake8 lambda.py
+            poetry run flake8 *.py
       - name: default deploy
         uses: appleboy/lambda-action@v0.1.9
         with:
@@ -45,4 +43,8 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_LAMBDA }}
           aws_region: ${{ vars.AWS_REGION }}
           function_name: image-processor
-          source: lambda.py
+          zip_file: image-uploader.zip
+          memory_size: 128
+          timeout: 10
+          handler: foobar
+          runtime: python3.12
