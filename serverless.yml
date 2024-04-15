@@ -2,7 +2,7 @@ service: image-processor
 
 provider:
   name: aws
-  runtime: python3.11
+  runtime: python3.12
   stage: dev
   region: us-west-2
 
@@ -14,7 +14,7 @@ package:
 
 functions:
   theLambda:
-    name: iamge-processor
+    name: image-processor
     handler: lambda.handler
     description: test-lambda
     timeout: 5
