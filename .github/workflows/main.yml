@@ -13,6 +13,7 @@ jobs:
   deploy:
     name: deploy
     runs-on: ubuntu-latest
+    environment: aws-lambda
     env:
       NODE_VERSION: 20.x
     strategy:
