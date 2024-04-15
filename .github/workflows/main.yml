@@ -43,8 +43,8 @@ jobs:
           aws_secret_access_key: ${{ secrets.AWS_LAMBDA }}
           aws_region: ${{ vars.AWS_REGION }}
           function_name: image-processor
-          zip_file: image-uploader.zip
-          memory_size: 128
-          timeout: 10
-          handler: foobar
+          # zip_file: image-uploader.zip
+          # memory_size: 128
+          # timeout: 10
+          source: lambda_function.py
           runtime: python3.12
