@@ -44,5 +44,5 @@ jobs:
           aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY }}
           aws_secret_access_key: ${{ secrets.AWS_LAMBDA }}
           aws_region: ${{ vars.AWS_REGION }}
-          function_name: handler
+          function_name: image-processor
           source: lambda.py
