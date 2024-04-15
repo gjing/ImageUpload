@@ -37,28 +37,11 @@ jobs:
       - name: Lint with flake8
         run: |
             poetry run flake8 lambda.py
-      - name: Use Node.js ${{ env.NODE_VERSION }}
-        uses: actions/setup-node@v1
+      - name: default deploy
+        uses: appleboy/lambda-action@v0.1.9
         with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - name: Cache node modules
-        uses: actions/cache@v2
-        env:
-          cache-name: cache-node-modules
-        with:
-          path: ~/.npm
-          key: ${{ runner.os }}-build-${{ env.cache-name }}-${{ hashFiles('**/package-lock.json') }}
-          restore-keys: |
-            ${{ runner.os }}-build-${{ env.cache-name }}-
-            ${{ runner.os }}-build-
-            ${{ runner.os }}-
-      - name: Install Node dependencies (specifically, serverless-python-requirements)
-        run: npm install
-
-      - name: Serverless Deploy
-        uses: dhollerbach/actions.serverless-with-python-requirements@v2
-        env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_LAMBDA }}
-          STAGE: dev
+          aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY }}
+          aws_secret_access_key: ${{ secrets.AWS_LAMBDA }}
+          aws_region: ${{ vars.AWS_REGION }}
+          function_name: handler
+          source: lambda.py
